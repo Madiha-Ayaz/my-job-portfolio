@@ -8,15 +8,23 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
-  const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
+  // Conditionally initialize the hook if auth is not null
+  const [
+    sendPasswordResetEmail,
+    sending,
+    error,
+  ] = auth ? useSendPasswordResetEmail(auth) : [() => Promise.resolve(false), false, undefined]; // Provide default no-op values
   const [emailSent, setEmailSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setEmailSent(false); // Reset status on new submission
-    const success = await sendPasswordResetEmail(email);
-    if (success) {
-      setEmailSent(true);
+    // Ensure sendPasswordResetEmail is a function before calling
+    if (sendPasswordResetEmail) { 
+        const success = await sendPasswordResetEmail(email);
+        if (success) {
+            setEmailSent(true);
+        }
     }
   };
 
