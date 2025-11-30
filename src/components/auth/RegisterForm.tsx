@@ -38,7 +38,23 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ auth }) => {
         router.push('/'); // Redirect to home on successful registration
       }
     } catch (err: any) {
-      setError(err.message || 'Registration failed. Please try again.');
+      let errorMessage = 'Registration failed. Please try again.';
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          errorMessage = 'This email address is already in use.';
+          break;
+        case 'auth/invalid-email':
+          errorMessage = 'Please enter a valid email address.';
+          break;
+        case 'auth/weak-password':
+          errorMessage = 'The password must be at least 6 characters long.';
+          break;
+        default:
+          // Use Firebase's error message for other cases
+          errorMessage = err.message || 'An unexpected error occurred.';
+          break;
+      }
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }

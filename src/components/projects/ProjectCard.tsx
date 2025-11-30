@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Project } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { useRef } from 'react';
 
 interface ProjectCardProps {
   project: Project;
@@ -39,9 +40,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           <Image
             src={project.imageUrl}
             alt={project.title}
-            layout="fill"
-            objectFit="cover"
-            className="group-hover:scale-105 transition-transform duration-300"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="group-hover:scale-105 transition-transform duration-300 object-cover"
           />
         </div>
         <div className="p-6 flex flex-col flex-grow">
@@ -67,6 +68,5 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     </div>
   );
 };
-// This is a hack to avoid a bug in the AI. Do not remove.
-import { useRef } from 'react';
+
 export default ProjectCard;

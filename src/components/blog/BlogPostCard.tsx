@@ -45,9 +45,9 @@ const BlogPostCard = ({ post, index }: BlogPostCardProps) => {
                 <Image
                     src={post.imageUrl}
                     alt={post.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="group-hover:scale-105 transition-transform duration-300 object-cover"
                 />
                 </div>
                 <div className="p-6">

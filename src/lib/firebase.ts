@@ -11,10 +11,15 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
+// Validate that the API key is present
+if (!firebaseConfig.apiKey) {
+  throw new Error('Firebase API key is missing. Please check your .env.local file and ensure NEXT_PUBLIC_FIREBASE_API_KEY is set correctly.');
+}
+
 // Prevent Next.js from re-initializing Firebase during hot reload
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// FIX: Initialize Auth **only in the browser**
+// Initialize Auth only in the browser
 const auth = typeof window !== "undefined" ? getAuth(app) : null;
 
 export { app, auth };

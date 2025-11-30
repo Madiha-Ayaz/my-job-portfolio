@@ -33,8 +33,9 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <Image
             src={post.imageUrl}
             alt={post.title}
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="object-cover"
             priority
           />
         </div>
