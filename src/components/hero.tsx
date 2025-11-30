@@ -4,18 +4,18 @@ import { useState, useEffect } from 'react'
 import { FaPlay, FaCode, FaRocket } from 'react-icons/fa'
 import Link from 'next/link'
 
+const roles = [
+  'Frontend Developer',
+  'React Specialist',
+  'UI/UX Engineer',
+  'Next.js Expert'
+]
+
 export default function HeroSection() {
   const [text, setText] = useState('')
   const [isDeleting, setIsDeleting] = useState(false)
   const [loopNum, setLoopNum] = useState(0)
   const [typingSpeed, setTypingSpeed] = useState(150)
-
-  const roles = [
-    'Frontend Developer',
-    'React Specialist',
-    'UI/UX Engineer',
-    'Next.js Expert'
-  ]
 
   useEffect(() => {
     const handleType = () => {
@@ -39,7 +39,7 @@ export default function HeroSection() {
 
     const timer = setTimeout(handleType, typingSpeed)
     return () => clearTimeout(timer)
-  }, [text, isDeleting, loopNum, typingSpeed, roles])
+  }, [text, isDeleting, loopNum, typingSpeed])
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">

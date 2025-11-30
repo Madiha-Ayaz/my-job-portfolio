@@ -3,79 +3,28 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
-import { auth } from '@/lib/firebase';
+import { Auth } from 'firebase/auth'; // Import Auth type
+import { auth as firebaseAuth } from '@/lib/firebase';
 import AnimatedSection from '@/components/ui/AnimatedSection';
+import ForgotPasswordForm from '@/components/auth/ForgotPasswordForm'; // New component
 
 const ForgotPasswordPage = () => {
-  const [email, setEmail] = useState('');
-  // Conditionally initialize the hook if auth is not null
-  const [
-    sendPasswordResetEmail,
-    sending,
-    error,
-  ] = auth ? useSendPasswordResetEmail(auth) : [() => Promise.resolve(false), false, undefined]; // Provide default no-op values
-  const [emailSent, setEmailSent] = useState(false);
+  // If firebaseAuth is null (e.g., during SSR), show a loading state.
+  // The actual form with hooks will only render when firebaseAuth is available.
+  if (!firebaseAuth) {
+    return (
+      <AnimatedSection>
+        <div className="max-w-md mx-auto bg-gray-800/20 p-8 rounded-lg border border-border-color">
+          <p className="text-center text-text-secondary">Loading authentication components...</p>
+        </div>
+      </AnimatedSection>
+    );
+  }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setEmailSent(false); // Reset status on new submission
-    // Ensure sendPasswordResetEmail is a function before calling
-    if (sendPasswordResetEmail) { 
-        const success = await sendPasswordResetEmail(email);
-        if (success) {
-            setEmailSent(true);
-        }
-    }
-  };
-
+  // firebaseAuth is guaranteed to be non-null here, so we can pass it safely.
   return (
     <AnimatedSection>
-      <div className="max-w-md mx-auto bg-gray-800/20 p-8 rounded-lg border border-border-color">
-        <h1 className="text-3xl font-bold text-center mb-6">Forgot Password</h1>
-        
-        {emailSent && (
-          <p className="text-green-500 text-center mb-4">
-            Password reset email sent! Please check your inbox (and spam folder).
-          </p>
-        )}
-        {error && <p className="text-red-500 text-center mb-4">{error.message}</p>}
-
-        {!emailSent ? (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-text-secondary mb-2">
-                Enter your account email
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="w-full bg-background border border-border-color text-text px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent"
-              />
-            </div>
-            <button 
-              type="submit" 
-              className="w-full bg-accent text-white font-bold py-3 rounded-md hover:bg-accent-dark transition-colors disabled:opacity-50"
-              disabled={sending}
-            >
-              {sending ? 'Sending...' : 'Send Reset Email'}
-            </button>
-          </form>
-        ) : (
-          <div className="text-center">
-            <p className="text-text-secondary">You can now close this page.</p>
-          </div>
-        )}
-
-        <p className="text-center text-sm text-text-secondary mt-8">
-          Remember your password?{' '}
-          <Link href="/auth/login" className="font-medium text-accent hover:underline">
-            Login
-          </Link>
-        </p>
-      </div>
+      <ForgotPasswordForm auth={firebaseAuth} />
     </AnimatedSection>
   );
 };

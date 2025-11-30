@@ -29,7 +29,7 @@ export default function HomePage() {
       <AnimatedSection className="mt-24 text-center">
         <h2 className="text-3xl font-bold mb-4">Interested in working together?</h2>
         <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
-          I'm always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision.
+          I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision.
         </p>
         <a 
           href="/contact"
