@@ -1,4 +1,5 @@
 // src/app/page.tsx
+import { Link } from 'react-router-dom';
 import Hero from '@/components/home/Hero';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
@@ -31,12 +32,12 @@ export default function HomePage() {
         <p className="text-text-secondary mb-8 max-w-2xl mx-auto">
           I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of an ambitious vision.
         </p>
-        <a 
-          href="/contact"
+        <Link 
+          to="/contact"
           className="bg-accent text-white font-bold py-3 px-8 rounded-full hover:bg-accent-dark transition-colors"
         >
           Get In Touch
-        </a>
+        </Link>
       </AnimatedSection>
     </div>
   );

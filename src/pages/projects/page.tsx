@@ -1,4 +1,4 @@
-'use client';
+
 
 import { useSearch } from '@/context/SearchContext';
 import { projects as allProjects } from '@/lib/data';

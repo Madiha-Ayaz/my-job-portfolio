@@ -1,9 +1,9 @@
 // components/SkillsPreview.tsx
-'use client'
+
 import { motion } from 'framer-motion'
 import { FaReact, FaNodeJs, FaJs, FaHtml5, FaCss3Alt, FaGitAlt } from 'react-icons/fa'
 import { SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql, SiFigma } from 'react-icons/si'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 interface Skill {
   name: string
@@ -143,7 +143,7 @@ export default function SkillsPreview() {
           className="text-center"
         >
           <Link
-            href="/skills"
+            to="/skills"
             className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 glow-effect"
           >
             <span className="mr-2">Explore All Skills</span>

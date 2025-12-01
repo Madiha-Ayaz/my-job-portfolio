@@ -1,6 +1,4 @@
 // src/components/layout/Footer.tsx
-import Link from 'next/link';
-
 const socialLinks = [
   { href: 'https://github.com/Madiha-Ayaz?tab=repositories', label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/madiha-ayaz-ba68512b5/', label: 'LinkedIn' },
@@ -21,7 +19,7 @@ const Footer = () => {
           </div>
           <div className="flex space-x-6">
             {socialLinks.map((link) => (
-              <Link 
+              <a 
                 key={link.label} 
                 href={link.href} 
                 className="text-sm text-text-secondary hover:text-accent transition-colors"
@@ -29,7 +27,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

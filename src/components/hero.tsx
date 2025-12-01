@@ -1,8 +1,8 @@
-'use client'
+
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import { FaPlay, FaCode, FaRocket } from 'react-icons/fa'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 const roles = [
   'Frontend Developer',
@@ -130,7 +130,7 @@ export default function HeroSection() {
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
             <Link
-              href="/projects"
+              to="/projects"
               className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 glow-effect"
             >
               <span className="relative z-10 flex items-center justify-center">
@@ -144,7 +144,7 @@ export default function HeroSection() {
             </Link>
 
             <Link
-              href="/contact"
+              to="/contact"
               className="group px-8 py-4 border-2 border-indigo-600 dark:border-indigo-400 text-indigo-600 dark:text-indigo-400 font-semibold rounded-full hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-400 dark:hover:text-slate-900 transition-all duration-300 hover:scale-105 flex items-center justify-center"
             >
               <FaPlay className="mr-2 group-hover:translate-x-1 transition-transform duration-300" />

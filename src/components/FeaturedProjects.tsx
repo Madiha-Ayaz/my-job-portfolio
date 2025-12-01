@@ -1,8 +1,8 @@
-'use client'
+
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { FaGithub, FaExternalLinkAlt, FaPlay } from 'react-icons/fa'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 
 interface Project {
   id: string
@@ -172,7 +172,7 @@ export default function FeaturedProjects() {
           className="text-center"
         >
           <Link
-            href="/projects"
+            to="/projects"
             className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-full hover:shadow-2xl hover:scale-105 transition-all duration-300 glow-effect"
           >
             <span className="mr-2">View All Projects</span>

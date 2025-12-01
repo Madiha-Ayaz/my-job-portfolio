@@ -1,7 +1,6 @@
-'use client';
 
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { auth } from '@/lib/firebase';
 import { signOut } from 'firebase/auth';
@@ -18,8 +17,8 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const pathname = usePathname();
-  const router = useRouter();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { user, loading } = useAuth();
   const { searchQuery, setSearchQuery } = useSearch();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -39,7 +38,7 @@ const Navbar = () => {
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (pathname !== '/projects') {
-        router.push('/projects');
+        navigate('/projects');
       }
     }
   };
@@ -47,7 +46,7 @@ const Navbar = () => {
   const NavLink = ({ href, label }: { href: string; label: string }) => {
     const isActive = pathname === href;
     return (
-      <Link href={href} className={`block md:inline-block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+      <Link to={href} className={`block md:inline-block px-3 py-2 rounded-md text-sm font-medium transition-colors ${
           isActive
             ? 'text-accent'
             : 'text-text-secondary hover:text-text'
@@ -79,7 +78,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           
           <div className="flex-shrink-0">
-            <Link href="/" className="text-xl font-bold text-text hover:text-accent transition-colors">
+            <Link to="/" className="text-xl font-bold text-text hover:text-accent transition-colors">
               Madiha Ayaz
             </Link>
           </div>
@@ -102,7 +101,7 @@ const Navbar = () => {
                     Logout
                   </button>
                 ) : (
-                  <Link href="/auth/login" className="px-4 py-2 rounded-md text-sm font-medium text-text-secondary hover:text-text transition-colors">
+                  <Link to="/auth/login" className="px-4 py-2 rounded-md text-sm font-medium text-text-secondary hover:text-text transition-colors">
                       Login
                   </Link>
                 ))}
@@ -141,7 +140,7 @@ const Navbar = () => {
                         Logout
                       </button>
                     ) : (
-                      <Link href="/auth/login" className="w-full block px-3 py-2 rounded-md text-sm font-medium text-text-secondary hover:text-text transition-colors">
+                      <Link to="/auth/login" className="w-full block px-3 py-2 rounded-md text-sm font-medium text-text-secondary hover:text-text transition-colors">
                           Login
                       </Link>
                     ))}

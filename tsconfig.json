@@ -10,17 +10,11 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "eslint.config.mjs", "postcss.config.mjs"],
+  "include": ["**/*.ts", "**/*.tsx", "eslint.config.mjs", "postcss.config.mjs"],
   "exclude": ["node_modules"]
 }

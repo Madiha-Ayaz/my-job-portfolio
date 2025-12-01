@@ -1,8 +1,7 @@
-'use client';
+
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Auth } from 'firebase/auth'; // Import Auth type
 import { useAuth } from '@/context/AuthContext';
@@ -17,15 +16,15 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ auth }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const router = useRouter();
+  const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
   const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
   useEffect(() => {
     if (!authLoading && user) {
-      router.push('/');
+      navigate('/');
     }
-  }, [user, authLoading, router]);
+  }, [user, authLoading, navigate]);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +34,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ auth }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(email, password);
       if (userCredential) {
-        router.push('/'); // Redirect to home on successful registration
+        navigate('/'); // Redirect to home on successful registration
       }
     } catch (err: any) {
       let errorMessage = 'Registration failed. Please try again.';
@@ -104,7 +103,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ auth }) => {
 
       <p className="text-center text-sm text-text-secondary mt-8">
         Already have an account?{' '}
-        <Link href="/auth/login" className="font-medium text-accent hover:underline">
+        <Link to="/auth/login" className="font-medium text-accent hover:underline">
           Login
         </Link>
       </p>

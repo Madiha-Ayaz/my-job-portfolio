@@ -1,7 +1,7 @@
-'use client';
+
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { Auth } from 'firebase/auth'; // Import Auth type
@@ -66,7 +66,7 @@ const ForgotPasswordForm: React.FC<ForgotPasswordFormProps> = ({ auth }) => {
 
       <p className="text-center text-sm text-text-secondary mt-8">
         Remember your password?{' '}
-        <Link href="/auth/login" className="font-medium text-accent hover:underline">
+        <Link to="/auth/login" className="font-medium text-accent hover:underline">
           Login
         </Link>
       </p>

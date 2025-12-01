@@ -1,8 +1,8 @@
 
 // components/PageTransition.tsx
-'use client'
+
 import { motion, AnimatePresence } from 'framer-motion'
-import { usePathname } from 'next/navigation'
+import { useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 interface PageTransitionProps {
@@ -11,7 +11,7 @@ interface PageTransitionProps {
 
 export default function PageTransition({ children }: PageTransitionProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const pathname = usePathname()
+  const { pathname } = useLocation()
 
   useEffect(() => {
     setIsLoading(true)

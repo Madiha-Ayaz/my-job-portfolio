@@ -1,19 +1,19 @@
-'use client';
+
 
 import { useAuth } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
-  const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // If loading is finished and there is no user, redirect to login.
     if (!loading && !user) {
-      router.push('/auth/login');
+      navigate('/auth/login');
     }
-  }, [user, loading, router]);
+  }, [user, loading, navigate]);
 
   // While loading, you can show a loader or a blank screen.
   if (loading) {

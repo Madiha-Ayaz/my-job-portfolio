@@ -1,8 +1,7 @@
-'use client';
+
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Auth } from 'firebase/auth';
 import { useAuth } from '@/context/AuthContext';
@@ -17,7 +16,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ auth }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const router = useRouter();
+  const navigate = useNavigate();
   const { user, loading: authLoading } = useAuth();
 
   const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
@@ -25,9 +24,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ auth }) => {
 
   useEffect(() => {
     if (!authLoading && user) {
-      router.push('/');
+      navigate('/');
     }
-  }, [user, authLoading, router]);
+  }, [user, authLoading, navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +42,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ auth }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(email, password);
       if (userCredential) {
-        router.push('/');
+        navigate('/');
       }
     } catch (err: any) {
       setError(err.message || 'Login failed. Please try again.');
@@ -65,7 +64,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ auth }) => {
     try {
       const userCredential = await signInWithGoogle();
       if (userCredential) {
-        router.push('/');
+        navigate('/');
       }
     } catch (err: any) {
       setError(err.message || 'Google Sign-in failed. Please try again.');
@@ -119,7 +118,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ auth }) => {
           </button>
 
           <div className="text-center">
-            <Link href="/auth/forgot-password" className="text-accent hover:underline text-sm">
+            <Link to="/auth/forgot-password" className="text-accent hover:underline text-sm">
               Forgot Password?
             </Link>
           </div>
@@ -144,7 +143,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ auth }) => {
 
       <div className="mt-6 text-center text-sm">
         Don&apos;t have an account?{' '}
-        <Link href="/auth/register" className="text-accent hover:underline font-medium">
+        <Link to="/auth/register" className="text-accent hover:underline font-medium">
           Sign up
         </Link>
       </div>

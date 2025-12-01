@@ -1,9 +1,8 @@
-'use client';
+
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -87,23 +86,20 @@ const Hero = () => {
           A Full-Stack Developer specializing in creating beautiful, functional, and user-centric web applications.
         </p>
         <div className="hero-cta flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-          <Link href="/projects" className="bg-accent text-white font-bold py-3 px-8 rounded-full hover:bg-accent-dark transition-colors">
+          <Link to="/projects" className="bg-accent text-white font-bold py-3 px-8 rounded-full hover:bg-accent-dark transition-colors">
             View My Work
           </Link>
-          <Link href="/contact" className="border border-border-color text-text-secondary font-bold py-3 px-8 rounded-full hover:border-accent hover:text-accent transition-colors">
+          <Link to="/contact" className="border border-border-color text-text-secondary font-bold py-3 px-8 rounded-full hover:border-accent hover:text-accent transition-colors">
             Contact Me
           </Link>
         </div>
       </div>
       
       <div className="hero-image absolute bottom-[-20%] md:bottom-[-40%] left-1/2 -translate-x-1/2 w-[120%] h-[80%] opacity-10 z-0">
-          <Image 
+          <img 
             src="/front.png" // More aesthetic, portfolio-related image
             alt="Abstract background of code"
-            fill
-            sizes="100vw"
-            className="object-contain"
-            priority
+            className="object-contain w-full h-full"
           />
       </div>
     </section>

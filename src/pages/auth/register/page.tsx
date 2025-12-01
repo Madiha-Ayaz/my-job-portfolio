@@ -1,12 +1,12 @@
-'use client'; // This page itself is a client component
+// This page itself is a client component
 
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { auth as firebaseAuth } from '@/lib/firebase'; // The potentially null auth object
-import LoginForm from '@/components/auth/LoginForm'; // New component
+import RegisterForm from '@/components/auth/RegisterForm'; // New component
 
-const LoginPage = () => {
+const RegisterPage = () => {
   // If firebaseAuth is null (e.g., during SSR), show a loading state.
-  // The actual form with hooks will only render when firebaseAuth is available.
+  // The actual form with logic will only render when firebaseAuth is available.
   if (!firebaseAuth) {
     return (
       <AnimatedSection>
@@ -20,9 +20,9 @@ const LoginPage = () => {
   // firebaseAuth is guaranteed to be non-null here, so we can pass it safely.
   return (
     <AnimatedSection>
-      <LoginForm auth={firebaseAuth} />
+      <RegisterForm auth={firebaseAuth} />
     </AnimatedSection>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

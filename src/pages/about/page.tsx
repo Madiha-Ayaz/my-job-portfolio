@@ -1,7 +1,7 @@
 // src/app/about/page.tsx
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import Image from 'next/image';
+
 
 const skills = [
   'Next.js', 'TypeScript', 'React', 'Node.js',
@@ -55,11 +55,10 @@ export default function AboutPage() {
         </div>
         <div className="md:w-1/3 flex justify-center">
             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-accent shadow-2xl">
-                <Image
+                <img
                     src="/arab-woman-abaya-hijab-girl-muslim-working-laptop-office-education-online-entrepreneur-freelancer_1030874-9889.avif"
                     alt="Madiha Ayaz"
-                    layout="fill"
-                    objectFit="cover"
+                    className="w-full h-full object-cover"
                 />
             </div>
         </div>

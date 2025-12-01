@@ -1,22 +1,14 @@
 // src/app/blog/[slug]/page.tsx
 import { blogPosts } from '@/lib/data';
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import { useParams } from 'react-router-dom';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
-// This function tells Next.js which routes to pre-render
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
-}
-
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default function BlogPostPage() {
+  const { slug } = useParams<{ slug: string }>();
   const post = blogPosts.find((p) => p.slug === slug);
 
   if (!post) {
-    notFound();
+    return <div>Post not found</div>;
   }
 
   return (
@@ -30,13 +22,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
         
         <div className="relative h-64 md:h-96 rounded-lg overflow-hidden mb-12">
-          <Image
+          <img
             src={post.imageUrl}
             alt={post.title}
-            fill
-            sizes="(max-width: 1024px) 100vw, 1024px"
-            className="object-cover"
-            priority
+            className="object-cover w-full h-full"
           />
         </div>
 

@@ -1,8 +1,6 @@
-// src/components/blog/BlogPostCard.tsx
-'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
+
+import { Link } from 'react-router-dom';
 import { BlogPost } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -39,15 +37,13 @@ const BlogPostCard = ({ post, index }: BlogPostCardProps) => {
 
   return (
     <div ref={cardRef} className="opacity-0">
-        <Link href={`/blog/${post.slug}`} className="block group">
+        <Link to={`/blog/${post.slug}`} className="block group">
             <div className="bg-gray-800/20 rounded-lg overflow-hidden border border-border-color h-full">
                 <div className="relative h-56">
-                <Image
+                <img
                     src={post.imageUrl}
                     alt={post.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="group-hover:scale-105 transition-transform duration-300 object-cover"
+                    className="group-hover:scale-105 transition-transform duration-300 object-cover w-full h-full"
                 />
                 </div>
                 <div className="p-6">

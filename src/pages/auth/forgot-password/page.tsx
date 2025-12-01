@@ -1,7 +1,4 @@
-'use client';
 
-import { useState } from 'react';
-import Link from 'next/link';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { Auth } from 'firebase/auth'; // Import Auth type
 import { auth as firebaseAuth } from '@/lib/firebase';

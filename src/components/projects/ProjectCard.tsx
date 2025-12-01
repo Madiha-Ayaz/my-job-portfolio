@@ -1,7 +1,6 @@
-'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
+
+
 import { Project } from '@/lib/data';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -37,12 +36,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     <div ref={cardRef} className="opacity-0">
       <div className="bg-gray-800/20 rounded-lg overflow-hidden group border border-border-color h-full flex flex-col">
         <div className="relative h-48">
-          <Image
+          <img
             src={project.imageUrl}
             alt={project.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="group-hover:scale-105 transition-transform duration-300 object-cover"
+            className="group-hover:scale-105 transition-transform duration-300 object-cover w-full h-full"
           />
         </div>
         <div className="p-6 flex flex-col flex-grow">
@@ -56,12 +53,12 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             ))}
           </div>
           <div className="mt-4 flex space-x-4">
-            <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text hover:text-accent transition-colors">
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text hover:text-accent transition-colors">
               Live Demo
-            </Link>
-            <Link href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-secondary hover:text-accent transition-colors">
+            </a>
+            <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-secondary hover:text-accent transition-colors">
               GitHub
-            </Link>
+            </a>
           </div>
         </div>
       </div>
